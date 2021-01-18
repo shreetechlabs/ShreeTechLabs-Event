@@ -1,0 +1,79 @@
+/*span style*/
+#site-name{
+display: inline-block; margin-top: 8px;
+}
+
+#color-transparency {
+background: rgba(255, 250, 250, 0.7);
+/* border-radius: 0% 0% 12% 0%; */
+padding: 60px 0px 60px 0px;
+}
+
+#banner-text-1 {
+font-size: 4rem;
+font-weight: bold;
+padding-left: 50px;
+display: block;
+color: rgb(44, 53, 57);
+}
+
+#banner-text-2 {
+font-size: 3rem;
+font-weight: bold;
+padding-left: 50px;
+display: block;
+color: rgb(0, 49, 83);
+}
+
+#banner-text-3 {
+font-size: 1.2rem;
+font-weight: bold;
+padding-left: 50px;
+display: block;
+color: #2a4041;
+}
+
+#section-2{
+background-image: linear-gradient(to bottom right, #ff8f00, yellow);
+}
+
+#section-3{
+background-image: linear-gradient(to bottom right, #89CFF0 , #1ca9c9);
+}
+
+#section-4{
+background-image: linear-gradient(to bottom right, yellow, #ff8f00);
+}
+
+#section-5{
+background-image: linear-gradient(to bottom right, #1ca9c9, #89CFF0);
+}
+
+.white-text-info-box{
+color: white;
+}
+
+.bold-title-hackathon{
+font-weight: bold;
+}
+
+/* media query for mobile devices */
+@media screen and (max-width:480px) {
+
+#site-name {
+font-size: 1rem;
+}
+
+#banner-text-1{
+font-size: 2.5rem;
+}
+
+#banner-text-2{
+font-size: 1.7rem;
+}
+
+#banner-text-3{
+font-size: 0.8rem;
+}
+
+}

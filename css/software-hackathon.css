@@ -1,0 +1,15 @@
+/* css for section-2 started */
+#section-2{
+    background-image: linear-gradient(to bottom right, #ff8f00, yellow);
+    padding: 20px 50px;
+}/* css for section-2 ended */
+
+/* css for info-box started   */
+#info-box{
+    border-radius: 50px;
+}/* css for info-box ended   */
+
+/* css for hackathon title started */
+.bold-title-hackathon{
+    font-weight: bold;
+}/* css for hackathon title ended */  
