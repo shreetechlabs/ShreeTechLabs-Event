@@ -27,18 +27,41 @@
             <li class="nav-item dropdown">
 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Hackathon <span class="badge badge-info">40+</span>
+                    aria-haspopup="true" aria-expanded="false">Hackathon 
+                    <span class="badge badge-info">
+                         <?php 
+                             Require "software-hackathon-fetching.php";
+                             $sum=$total_row_software;
+                             Require "hardware-hackathon-fetching.php";
+                             $sum=$sum+$total_row_hardware;
+                             echo $sum."+";
+                         ?>
+                    </span>
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                    <a class="dropdown-item" href="software-hackathon.php">Software Edition <span
-                            class="badge badge-secondary">35+</span></a>
+                    <a class="dropdown-item" href="software-hackathon.php">Software Edition 
+                        <span
+                            class="badge badge-secondary">
+                            <?php 
+                                 Require "software-hackathon-fetching.php";
+                                 echo $total_row_software."+";
+                            ?>
+                        </span>
+                    </a>
 
                     <div class="dropdown-divider"></div>
 
-                    <a class="dropdown-item" href="hardware-hackathon.php">Hardware Edition <span
-                            class="badge badge-secondary">4+</span></a>
+                    <a class="dropdown-item" href="hardware-hackathon.php">Hardware Edition 
+                        <span
+                            class="badge badge-secondary">
+                            <?php 
+                                 Require "hardware-hackathon-fetching.php";
+                                 echo $total_row_hardware."+";
+                            ?>
+                        </span>
+                    </a>
 
                 </div>
 
@@ -46,19 +69,39 @@
 
             <!-- Tech-Cometition Started-->
             <li class="nav-item">
-                <a class="nav-link" href="tech-competition.php">Tech-Competition <span
-                        class="badge badge-info">1+</span></a>
+                <a class="nav-link" href="tech-competition.php">Tech-Competition 
+                    <span
+                        class="badge badge-info">
+                        <?php 
+                             Require "tech-competition-fetching.php";
+                             echo $total_row_tech."+";
+                        ?>
+                    </span>
+                </a>
             </li><!-- Exhibitions Ends-->
 
             <!-- Workshop Started-->
             <li class="nav-item">
-                <a class="nav-link" href="workshop.php">Workshop <span
-                        class="badge badge-info">1+</span></a>
+                <a class="nav-link" href="workshop.php">Workshop 
+                    <span class="badge badge-info">
+                        <?php 
+                             Require "workshop-fetching.php";
+                             echo $total_row_workshop."+";
+                        ?>
+                    </span>
+                </a>
             </li><!-- Workshop Ends-->
 
             <!-- Exhibitions -->
             <li class="nav-item">
-                <a class="nav-link" href="exhibition.php">Exhibition <span class="badge badge-info">1+</span></a>
+                <a class="nav-link" href="exhibition.php">Exhibition 
+                    <span class="badge badge-info">
+                        <?php 
+                             Require "exhibition-fetching.php";
+                             echo $total_row_exhibition."+";
+                        ?>
+                    </span>
+                </a>
             </li><!-- Exhibitions Ends-->
 
         </ul>
