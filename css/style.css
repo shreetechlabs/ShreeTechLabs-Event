@@ -1,3 +1,13 @@
+a {
+color: inherit;
+text-decoration: none;
+}
+
+a:hover {
+color: inherit;
+text-decoration: none;
+}
+
 /*span style*/
 #site-name{
 display: inline-block; margin-top: 8px;
@@ -34,11 +44,15 @@ color: #2a4041;
 }
 
 #section-2{
-background-image: linear-gradient(to bottom right, #ff8f00, yellow);
+background-image: linear-gradient(to bottom right,yellow, #ff8f00);
+}
+
+#sec-2-row-1{
+    padding: 20px 50px 10px 50px ;
 }
 
 #section-3{
-background-image: linear-gradient(to bottom right, #89CFF0 , #1ca9c9);
+background-image: linear-gradient(to bottom right,#1ca9c9, #89CFF0);
 }
 
 #section-4{
@@ -66,14 +80,47 @@ font-size: 1rem;
 
 #banner-text-1{
 font-size: 2.5rem;
+padding-left: 20px;
 }
 
 #banner-text-2{
 font-size: 1.7rem;
+padding-left: 20px;
 }
 
 #banner-text-3{
 font-size: 0.8rem;
+padding-left: 20px;
 }
 
+.hide-sm{
+display: none;
+}
+
+.pad-left-sm{
+    padding-left: 20px;
+}
+
+.mar-left-sm{
+    margin-left: 0px;
+}
+
+}
+
+/* Media Queries For Medium Devices */
+@media screen and (min-width: 480px) {
+
+.hide-md{
+display: none;
+}
+
+}
+
+.explore-more{
+font-size: 1.1rem;
+font-weight: bold;
+}
+
+.explore-more:hover{
+font-weight: normal;
 }
