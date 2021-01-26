@@ -63,14 +63,14 @@
 
 <body>
 
-  <!-- alert for website -->
-  <?php
-  Require 'alert.php';
-  ?>
-
   <!-- Attaching navigation bar -->
   <?php
   Require 'nav.php';
+  ?>
+
+  <!-- alert for website -->
+  <?php
+  Require 'alert.php';
   ?>
 
   <!-- intro-section -->
@@ -83,7 +83,7 @@
           <span id="banner-text-2">Workshops & Exhibitions</span>
           <span id="banner-text-3">Here you will get, all the updates regarding any Hackathons, Technical
             Competitions,</span>
-          <span id="banner-text-3">Workshops & Exhibitions near by your location</span>
+          <span id="banner-text-3">Workshops & Exhibitions nearest to your location.</span>
         </div>
         <div class="col-md-2">
         </div>
@@ -91,24 +91,24 @@
     </div>
   </div><!-- intro-end -->
 
-  <!-- section-2 for featured hackathons started-->
-  <div id="section-2" class="container-fluid">
+  <!-- section-2 for featured Hackathons started-->
+  <div id="section-2">
 
     <!-- row 1 started -->
-    <div class="row" style="padding: 20px 50px 10px 50px ;">
+    <div id="sec-2-row-1" class="row">
 
       <!-- column for featured hackathon text started -->
-      <div class="col-md-4">
-        <span style="font-size: 2rem; font-weight: bold;">Featured Hackathons</span>
+      <div class="col-md-6">
+        <span style="font-size: 2rem; font-weight: bold;" class="mar-left-sm">Most Featured Hackathons</span>
       </div><!-- column for featured hackathon text end -->
 
       <!-- vacant column for spacing started -->
-      <div class="col-md-5">
+      <div class="col-md-3">
       </div><!-- vacant column for spacing end -->
 
       <!-- column for explore more hackathon started -->
-      <div class="col-md-3">
-        <span style="font-size: 1.2rem;"><a href="#">Explore More Hackathons</a></span>
+      <div class="col-md-3 hide-sm">
+        <a href="software-hackathon.php"><span class="explore-more">Explore More Hackathons ></span></a>
       </div><!-- column for explore more hackathon end -->
 
     </div> <!-- row 1 end -->
@@ -116,823 +116,404 @@
     <!-- row 2 started -->
     <div class="row" style="padding: 20px 50px 85px 50px;">
 
+      <?php 
+        Require 'featured-softwarehackathon-fetching.php';
+        while($row=mysqli_fetch_array($select_query_result)){
+      ?>
+
+
       <!-- left col-md-6 for layout of hachathon info box started -->
       <div class="col-12 col-md-6">
 
-        <!-- row 2.1 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
+        <a href="<?php echo $row['eventLink'] ?>" target="_blank">
+          <!-- row 2.1 started -->
+          <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
 
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
+            <!-- column for logo of organisation started -->
+            <div class="col-md-3">
 
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
+              <img src="<?php echo $row['logoPath'] ?>" alt="" width="200" height="200">
 
-          </div><!-- column for logo of organisation end -->
+            </div><!-- column for logo of organisation end -->
 
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
+            <!-- column for text info related to hackathon started -->
+            <div class="col-md-9">
 
-            <!-- row 2.1.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#"><a href="#">Smart India Hackathon 2020</a></a></a></span>
-            </div><!-- row 2.1.1 for hackathon title end -->
+              <!-- row 2.1.1 for hackathon title started -->
+              <div class="bold-title-hackathon">
+                <span>
+                  <?php echo $row['title'] ?>
+                </span>
+              </div><!-- row 2.1.1 for hackathon title end -->
 
-            <!-- row 2.1.2 for hackathon short intro started -->
-            <div class="row">
-              <span>prem bhai Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.1.2 for hackathon short intro end -->
+              <!-- row 2.1.2 for hackathon short intro started -->
+              <div>
+                <span>
+                  <?php echo $row['eventTagline'] ?>
+                </span>
+              </div>
+              <hr> <!-- row 2.1.2 for hackathon short intro end -->
 
-            <!-- row 2.1.3 for hackathon prize money & fee info started -->
-            <div class="row">
+              <!-- row 2.1.3 for hackathon prize money & fee info started -->
+              <div class="row no-gutters">
 
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
+                <!-- column for prize money started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Prize:</span>
+                  <?php echo $row['prize'] ?>
+                </div><!-- column for prize money end -->
 
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
+                <!-- column for fee started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Fee:</span>
+                  <?php echo $row['fee'] ?>
+                </div><!-- column for fee end -->
 
-            </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
+              </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
 
-            <!-- row 2.1.4 for hackathon mode & deadline info started -->
-            <div class="row">
+              <!-- row 2.1.4 for hackathon mode & deadline info started -->
+              <div class="row no-gutters">
 
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
+                <!-- column for mode started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Mode:</span>
+                  <?php echo $row['mode'] ?>
+                </div><!-- column for mode ended -->
 
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
+                <!-- column for deadline started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Deadline:</span>
+                  <?php echo $row['deadline'] ?>
+                </div><!-- column for deadline end -->
 
-            </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
+              </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
 
-          </div><!-- column for text info related to hackathon end -->
+            </div><!-- column for text info related to hackathon end -->
 
-        </div><!-- row 2.1 end -->
+          </div><!-- row 2.1 end -->
+        </a>
 
       </div><!-- left col-md-6 for layout of hachathon info box started -->
 
-      <!-- right col-md-6 for layout of hachathon info box started -->
+
+      <?php } ?>
+
+      <?php 
+          Require 'featured-hardwarehackathon-fetching.php';
+          while($row=mysqli_fetch_array($select_query_result)){
+      ?>
+
+      <!-- left col-md-6 for layout of hachathon info box started -->
       <div class="col-12 col-md-6">
 
-        <!-- row 2.2 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
+        <a href="<?php echo $row['eventLink'] ?>" target="_blank">
+          <!-- row 2.1 started -->
+          <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
 
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
+            <!-- column for logo of organisation started -->
+            <div class="col-md-3">
 
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
+              <img src="<?php echo $row['logoPath'] ?>" alt="" width="200" height="200">
 
-          </div><!-- column for logo of organisation end -->
+            </div><!-- column for logo of organisation end -->
 
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
+            <!-- column for text info related to hackathon started -->
+            <div class="col-md-9">
 
-            <!-- row 2.2.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.2.1 for hackathon title end -->
+              <!-- row 2.1.1 for hackathon title started -->
+              <div class="bold-title-hackathon">
+                <span>
+                  <?php echo $row['title'] ?>
+                </span>
+              </div><!-- row 2.1.1 for hackathon title end -->
 
-            <!-- row 2.2.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.2.2 for hackathon short intro end -->
+              <!-- row 2.1.2 for hackathon short intro started -->
+              <div>
+                <span>
+                  <?php echo $row['eventTagline'] ?>
+                </span>
+              </div>
+              <hr> <!-- row 2.1.2 for hackathon short intro end -->
 
-            <!-- row 2.2.3 for hackathon prize money & fee info started -->
-            <div class="row">
+              <!-- row 2.1.3 for hackathon prize money & fee info started -->
+              <div class="row no-gutters">
 
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
+                <!-- column for prize money started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Prize:</span>
+                  <?php echo $row['prize'] ?>
+                </div><!-- column for prize money end -->
 
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
+                <!-- column for fee started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Fee:</span>
+                  <?php echo $row['fee'] ?>
+                </div><!-- column for fee end -->
 
-            </div><!-- row 2.2.3 for hackathon prize money & fee info end -->
+              </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
 
-            <!-- row 2.2.4 for hackathon mode & deadline info started -->
-            <div class="row">
+              <!-- row 2.1.4 for hackathon mode & deadline info started -->
+              <div class="row no-gutters">
 
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
+                <!-- column for mode started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Mode:</span>
+                  <?php echo $row['mode'] ?>
+                </div><!-- column for mode ended -->
 
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
+                <!-- column for deadline started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Deadline:</span>
+                  <?php echo $row['deadline'] ?>
+                </div><!-- column for deadline end -->
 
-            </div> <!-- row 2.2.4 for hackathon mode & deadline info end -->
+              </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
 
-          </div><!-- column for text info related to hackathon end -->
+            </div><!-- column for text info related to hackathon end -->
 
-        </div><!-- row 2.2 end -->
+          </div><!-- row 2.1 end -->
+        </a>
 
-      </div><!-- right col-md-6 for layout of hachathon info box started -->
+      </div><!-- left col-md-6 for layout of hachathon info box started -->
 
-      <!-- down left col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
+      <?php } ?>
 
-        <!-- row 2.3 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9 ">
-
-            <!-- row 2.3.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.3.1 for hackathon title end -->
-
-            <!-- row 2.3.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.3.2 for hackathon short intro end -->
-
-            <!-- row 2.3.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.3.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.3.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.3.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.3 end -->
-
-      </div><!-- down left col-md-6 for layout of hachathon info box started -->
-
-      <!-- down right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.4 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.4.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.4.1 for hackathon title end -->
-
-            <!-- row 2.4.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.4.2 for hackathon short intro end -->
-
-            <!-- row 2.4.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.4.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.4.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.4.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.4 end -->
-
-      </div><!-- down right col-md-6 for layout of hachathon info box started -->
+      <!-- column for explore more hackathon started -->
+      <div class="hide-md">
+        <a href="software-hackathon.php"><span class="explore-more">Explore More Hackathons ></span></a>
+      </div><!-- column for explore more hackathon end -->
 
     </div> <!-- row 2 end -->
 
-  </div><!-- section-2 for featured hackathons end-->
+  </div><!-- section-2 for featured Hackathons started-->
 
-  <!-- section-3 for featured technical event started-->
+  <!-- section-3 for Tech Competition started-->
   <div id="section-3">
 
     <!-- row 1 started -->
     <div class="row" style="padding: 20px 50px 10px 50px ;">
 
-      <!-- column for featured hackathon text started -->
+      <!-- column for featured Tech Competition text started -->
       <div class="col-md-6 white-text-info-box">
-        <span style="font-size: 2rem; font-weight: bold;">Featured Technical Competition</span>
-      </div><!-- column for featured hackathon text end -->
+        <span style="font-size: 2rem; font-weight: bold;">Most Featured Competitions</span>
+      </div><!-- column for featured Tech Competition text end -->
 
       <!-- vacant column for spacing started -->
       <div class="col-md-3">
       </div><!-- vacant column for spacing end -->
 
-      <!-- column for explore more hackathon started -->
-      <div class="col-md-3 white-text-info-box">
-        <span style="font-size: 1.2rem;"><a href="#">Explore More Tech compitition</a></span>
-      </div><!-- column for explore more hackathon end -->
+      <!-- column for explore more Tech Competition started -->
+      <div class="col-md-3 white-text-info-box hide-sm">
+        <a href="tech-competition.php"><span class="explore-more">Explore More Competitions ></span></a>
+      </div><!-- column for explore more Tech Competition end -->
 
     </div> <!-- row 1 end -->
 
     <!-- row 2 started -->
     <div class="row" style="padding: 20px 50px 85px 50px;">
 
+      <?php 
+        Require 'featured-techcompetition-fetching.php';
+        while($row=mysqli_fetch_array($select_query_result)){
+      ?>
+
       <!-- left col-md-6 for layout of hachathon info box started -->
       <div class="col-12 col-md-6">
 
-        <!-- row 2.1 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
+        <a href="<?php echo $row['eventLink'] ?>" target="_blank">
+          <!-- row 2.1 started -->
+          <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
 
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
+            <!-- column for logo of organisation started -->
+            <div class="col-md-3">
 
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
+              <img src="<?php echo $row['logoPath'] ?>" alt="" width="200" height="200">
 
-          </div><!-- column for logo of organisation end -->
+            </div><!-- column for logo of organisation end -->
 
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
+            <!-- column for text info related to hackathon started -->
+            <div class="col-md-9">
 
-            <!-- row 2.1.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.1.1 for hackathon title end -->
+              <!-- row 2.1.1 for hackathon title started -->
+              <div class="bold-title-hackathon">
+                <span>
+                  <?php echo $row['title'] ?>
+                </span>
+              </div><!-- row 2.1.1 for hackathon title end -->
 
-            <!-- row 2.1.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.1.2 for hackathon short intro end -->
+              <!-- row 2.1.2 for hackathon short intro started -->
+              <div>
+                <span>
+                  <?php echo $row['eventTagline'] ?>
+                </span>
+              </div>
+              <hr> <!-- row 2.1.2 for hackathon short intro end -->
 
-            <!-- row 2.1.3 for hackathon prize money & fee info started -->
-            <div class="row">
+              <!-- row 2.1.3 for hackathon prize money & fee info started -->
+              <div class="row no-gutters">
 
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
+                <!-- column for prize money started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Prize:</span>
+                  <?php echo $row['prize'] ?>
+                </div><!-- column for prize money end -->
 
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
+                <!-- column for fee started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Fee:</span>
+                  <?php echo $row['fee'] ?>
+                </div><!-- column for fee end -->
 
-            </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
+              </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
 
-            <!-- row 2.1.4 for hackathon mode & deadline info started -->
-            <div class="row">
+              <!-- row 2.1.4 for hackathon mode & deadline info started -->
+              <div class="row no-gutters">
 
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
+                <!-- column for mode started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Mode:</span>
+                  <?php echo $row['mode'] ?>
+                </div><!-- column for mode ended -->
 
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
+                <!-- column for deadline started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Deadline:</span>
+                  <?php echo $row['deadline'] ?>
+                </div><!-- column for deadline end -->
 
-            </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
+              </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
 
-          </div><!-- column for text info related to hackathon end -->
+            </div><!-- column for text info related to hackathon end -->
 
-        </div><!-- row 2.1 end -->
+          </div><!-- row 2.1 end -->
+        </a>
 
       </div><!-- left col-md-6 for layout of hachathon info box started -->
 
-      <!-- right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
+      <?php } ?>
 
-        <!-- row 2.2 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.2.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.2.1 for hackathon title end -->
-
-            <!-- row 2.2.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.2.2 for hackathon short intro end -->
-
-            <!-- row 2.2.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.2.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.2.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.2.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.2 end -->
-
-      </div><!-- right col-md-6 for layout of hachathon info box started -->
-
-      <!-- down left col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.3 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.3.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.3.1 for hackathon title end -->
-
-            <!-- row 2.3.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.3.2 for hackathon short intro end -->
-
-            <!-- row 2.3.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.3.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.3.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.3.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.3 end -->
-
-      </div><!-- down left col-md-6 for layout of hachathon info box started -->
-
-      <!-- down right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.4 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.4.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.4.1 for hackathon title end -->
-
-            <!-- row 2.4.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.4.2 for hackathon short intro end -->
-
-            <!-- row 2.4.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.4.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.4.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.4.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.4 end -->
-
-      </div><!-- down right col-md-6 for layout of hachathon info box started -->
+      <!-- column for explore more Tech Competition started -->
+      <div class="col-md-3 white-text-info-box hide-md">
+        <a href="tech-competition.php"><span class="explore-more">Explore More Competitions ></span></a>
+      </div><!-- column for explore more Tech Competition end -->
 
     </div> <!-- row 2 end -->
 
-  </div><!-- section-3 for featured technical event end-->
+  </div><!-- section-3 for Tech Competition end-->
 
-  <!-- section-4 for featured workshops started-->
+  <!-- section-4 for featured Workshops started-->
   <div id="section-4">
 
     <!-- row 1 started -->
     <div class="row" style="padding: 20px 50px 10px 50px ;">
 
-      <!-- column for featured hackathon text started -->
-      <div class="col-md-4">
-        <span style="font-size: 2rem; font-weight: bold;">Featured Workshops</span>
-      </div><!-- column for featured hackathon text end -->
+      <!-- column for featured Workshops text started -->
+      <div class="col-md-6">
+        <span style="font-size: 2rem; font-weight: bold;">Most Featured Workshops</span>
+      </div><!-- column for featured Workshops text end -->
 
       <!-- vacant column for spacing started -->
-      <div class="col-md-5">
+      <div class="col-md-3">
       </div><!-- vacant column for spacing end -->
 
-      <!-- column for explore more hackathon started -->
-      <div class="col-md-3">
-        <span style="font-size: 1.2rem;"><a href="#">Explore More Workshops</a></span>
-      </div><!-- column for explore more hackathon end -->
+      <!-- column for explore more Workshops started -->
+      <div class="col-md-3 hide-sm">
+        <a href="workshop.php"><span class="explore-more">Explore More Workshops ></span></a>
+      </div><!-- column for explore more Workshops end -->
 
     </div> <!-- row 1 end -->
 
     <!-- row 2 started -->
     <div class="row" style="padding: 20px 50px 85px 50px;">
 
+      <?php 
+        Require 'featured-workshop-fetching.php';
+        while($row=mysqli_fetch_array($select_query_result)){
+      ?>
+
       <!-- left col-md-6 for layout of hachathon info box started -->
       <div class="col-12 col-md-6">
 
-        <!-- row 2.1 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
+        <a href="<?php echo $row['eventLink'] ?>" target="_blank">
+          <!-- row 2.1 started -->
+          <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
 
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
+            <!-- column for logo of organisation started -->
+            <div class="col-md-3">
 
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
+              <img src="<?php echo $row['logoPath'] ?>" alt="" width="200" height="200">
 
-          </div><!-- column for logo of organisation end -->
+            </div><!-- column for logo of organisation end -->
 
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
+            <!-- column for text info related to hackathon started -->
+            <div class="col-md-9">
 
-            <!-- row 2.1.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.1.1 for hackathon title end -->
+              <!-- row 2.1.1 for hackathon title started -->
+              <div class="bold-title-hackathon">
+                <span>
+                  <?php echo $row['title'] ?>
+                </span>
+              </div><!-- row 2.1.1 for hackathon title end -->
 
-            <!-- row 2.1.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.1.2 for hackathon short intro end -->
+              <!-- row 2.1.2 for hackathon short intro started -->
+              <div>
+                <span>
+                  <?php echo $row['eventTagline'] ?>
+                </span>
+              </div>
+              <hr> <!-- row 2.1.2 for hackathon short intro end -->
 
-            <!-- row 2.1.3 for hackathon prize money & fee info started -->
-            <div class="row">
+              <!-- row 2.1.3 for hackathon prize money & fee info started -->
+              <div class="row no-gutters">
 
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
+                <!-- column for prize money started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Prize:</span>
+                  <?php echo $row['prize'] ?>
+                </div><!-- column for prize money end -->
 
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
+                <!-- column for fee started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Fee:</span>
+                  <?php echo $row['fee'] ?>
+                </div><!-- column for fee end -->
 
-            </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
+              </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
 
-            <!-- row 2.1.4 for hackathon mode & deadline info started -->
-            <div class="row">
+              <!-- row 2.1.4 for hackathon mode & deadline info started -->
+              <div class="row no-gutters">
 
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
+                <!-- column for mode started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Mode:</span>
+                  <?php echo $row['mode'] ?>
+                </div><!-- column for mode ended -->
 
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
+                <!-- column for deadline started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Deadline:</span>
+                  <?php echo $row['deadline'] ?>
+                </div><!-- column for deadline end -->
 
-            </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
+              </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
 
-          </div><!-- column for text info related to hackathon end -->
+            </div><!-- column for text info related to hackathon end -->
 
-        </div><!-- row 2.1 end -->
+          </div><!-- row 2.1 end -->
+        </a>
 
       </div><!-- left col-md-6 for layout of hachathon info box started -->
 
-      <!-- right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
+      <?php } ?>
 
-        <!-- row 2.2 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.2.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.2.1 for hackathon title end -->
-
-            <!-- row 2.2.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.2.2 for hackathon short intro end -->
-
-            <!-- row 2.2.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.2.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.2.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.2.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.2 end -->
-
-      </div><!-- right col-md-6 for layout of hachathon info box started -->
-
-      <!-- down left col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.3 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.3.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.3.1 for hackathon title end -->
-
-            <!-- row 2.3.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.3.2 for hackathon short intro end -->
-
-            <!-- row 2.3.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.3.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.3.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.3.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.3 end -->
-
-      </div><!-- down left col-md-6 for layout of hachathon info box started -->
-
-      <!-- down right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.4 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.4.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.4.1 for hackathon title end -->
-
-            <!-- row 2.4.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.4.2 for hackathon short intro end -->
-
-            <!-- row 2.4.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.4.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.4.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.4.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.4 end -->
-
-      </div><!-- down right col-md-6 for layout of hachathon info box started -->
+      <!-- column for explore more Workshops started -->
+      <div class="col-md-3 hide-md">
+        <a href="workshop.php"><span class="explore-more">Explore More Workshops ></span></a>
+      </div><!-- column for explore more Workshops end -->
 
     </div> <!-- row 2 end -->
 
-  </div><!-- section-4 for featured workshops end-->
+  </div><!-- section-4 for featured Workshops started-->
 
   <!-- section-5 for featured Exhibitions started-->
   <div id="section-5">
@@ -941,17 +522,17 @@
     <div class="row" style="padding: 20px 50px 10px 50px ;">
 
       <!-- column for featured hackathon text started -->
-      <div class="col-md-4 white-text-info-box">
-        <span style="font-size: 2rem; font-weight: bold;">Featured Exhibitons</span>
+      <div class="col-md-6 white-text-info-box">
+        <span style="font-size: 2rem; font-weight: bold;">Most Featured Exhibitons</span>
       </div><!-- column for featured hackathon text end -->
 
       <!-- vacant column for spacing started -->
-      <div class="col-md-5">
+      <div class="col-md-3">
       </div><!-- vacant column for spacing end -->
 
       <!-- column for explore more hackathon started -->
-      <div class="col-md-3 white-text-info-box">
-        <span style="font-size: 1.2rem;"><a href="#">Explore More Exhibitions</a></span>
+      <div class="col-md-3 white-text-info-box hide-sm">
+        <a href="exhibition.php"><span class="explore-more">Explore More Exhibitions ></span></a>
       </div><!-- column for explore more hackathon end -->
 
     </div> <!-- row 1 end -->
@@ -959,257 +540,91 @@
     <!-- row 2 started -->
     <div class="row" style="padding: 20px 50px 85px 50px;">
 
+      <?php 
+        Require 'featured-exhibition-fetching.php';
+        while($row=mysqli_fetch_array($select_query_result)){
+      ?>
+
       <!-- left col-md-6 for layout of hachathon info box started -->
       <div class="col-12 col-md-6">
 
-        <!-- row 2.1 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
+        <a href="<?php echo $row['eventLink'] ?>" target="_blank">
+          <!-- row 2.1 started -->
+          <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
 
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
+            <!-- column for logo of organisation started -->
+            <div class="col-md-3">
 
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
+              <img src="<?php echo $row['logoPath'] ?>" alt="" width="200" height="200">
 
-          </div><!-- column for logo of organisation end -->
+            </div><!-- column for logo of organisation end -->
 
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
+            <!-- column for text info related to hackathon started -->
+            <div class="col-md-9">
 
-            <!-- row 2.1.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.1.1 for hackathon title end -->
+              <!-- row 2.1.1 for hackathon title started -->
+              <div class="bold-title-hackathon">
+                <span>
+                  <?php echo $row['title'] ?>
+                </span>
+              </div><!-- row 2.1.1 for hackathon title end -->
 
-            <!-- row 2.1.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.1.2 for hackathon short intro end -->
+              <!-- row 2.1.2 for hackathon short intro started -->
+              <div>
+                <span>
+                  <?php echo $row['eventTagline'] ?>
+                </span>
+              </div>
+              <hr> <!-- row 2.1.2 for hackathon short intro end -->
 
-            <!-- row 2.1.3 for hackathon prize money & fee info started -->
-            <div class="row">
+              <!-- row 2.1.3 for hackathon prize money & fee info started -->
+              <div class="row no-gutters">
 
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
+                <!-- column for prize money started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Prize:</span>
+                  <?php echo $row['prize'] ?>
+                </div><!-- column for prize money end -->
 
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
+                <!-- column for fee started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Fee:</span>
+                  <?php echo $row['fee'] ?>
+                </div><!-- column for fee end -->
 
-            </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
+              </div><!-- row 2.1.3 for hackathon prize money & fee info end -->
 
-            <!-- row 2.1.4 for hackathon mode & deadline info started -->
-            <div class="row">
+              <!-- row 2.1.4 for hackathon mode & deadline info started -->
+              <div class="row no-gutters">
 
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
+                <!-- column for mode started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Mode:</span>
+                  <?php echo $row['mode'] ?>
+                </div><!-- column for mode ended -->
 
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
+                <!-- column for deadline started -->
+                <div class="col-md-6">
+                  <span style="font-weight: 500;">Deadline:</span>
+                  <?php echo $row['deadline'] ?>
+                </div><!-- column for deadline end -->
 
-            </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
+              </div> <!-- row 2.1.4 for hackathon mode & deadline info end -->
 
-          </div><!-- column for text info related to hackathon end -->
+            </div><!-- column for text info related to hackathon end -->
 
-        </div><!-- row 2.1 end -->
+          </div><!-- row 2.1 end -->
+        </a>
 
       </div><!-- left col-md-6 for layout of hachathon info box started -->
 
-      <!-- right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
+      <?php } ?>
 
-        <!-- row 2.2 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
 
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.2.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.2.1 for hackathon title end -->
-
-            <!-- row 2.2.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.2.2 for hackathon short intro end -->
-
-            <!-- row 2.2.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.2.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.2.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.2.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.2 end -->
-
-      </div><!-- right col-md-6 for layout of hachathon info box started -->
-
-      <!-- down left col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.3 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.3.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.3.1 for hackathon title end -->
-
-            <!-- row 2.3.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.3.2 for hackathon short intro end -->
-
-            <!-- row 2.3.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.3.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.3.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.3.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.3 end -->
-
-      </div><!-- down left col-md-6 for layout of hachathon info box started -->
-
-      <!-- down right col-md-6 for layout of hachathon info box started -->
-      <div class="col-12 col-md-6">
-
-        <!-- row 2.4 started -->
-        <div class="row info-box" style="background-color: white; padding: 20px; margin:10px 10px 10px 0px;">
-
-          <!-- column for logo of organisation started -->
-          <div class="col-md-3">
-
-            <img src="images/logo/dummy-hackathon-1.png" alt="" width="200" height="200">
-
-          </div><!-- column for logo of organisation end -->
-
-          <!-- column for text info related to hackathon started -->
-          <div class="col-md-9">
-
-            <!-- row 2.4.1 for hackathon title started -->
-            <div class="row bold-title-hackathon">
-              <span><a href="#"><a href="#">Smart India Hackathon 2020</a></a></span>
-            </div><!-- row 2.4.1 for hackathon title end -->
-
-            <!-- row 2.4.2 for hackathon short intro started -->
-            <div class="row">
-              <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, dignissimos.</span>
-            </div>
-            <hr> <!-- row 2.4.2 for hackathon short intro end -->
-
-            <!-- row 2.4.3 for hackathon prize money & fee info started -->
-            <div class="row">
-
-              <!-- column for prize money started -->
-              <div class="col-md-6">
-                prize: 25,000
-              </div><!-- column for prize money end -->
-
-              <!-- column for fee started -->
-              <div class="col-md-6">
-                Fee: 1200
-              </div><!-- column for fee end -->
-
-            </div><!-- row 2.4.3 for hackathon prize money & fee info end -->
-
-            <!-- row 2.4.4 for hackathon mode & deadline info started -->
-            <div class="row">
-
-              <!-- column for mode started -->
-              <div class="col-md-6">
-                Mode: Offline
-              </div><!-- column for mode ended -->
-
-              <!-- column for deadline started -->
-              <div class="col-md-6">
-                Deadline: 25-Jan-2020
-              </div><!-- column for deadline end -->
-
-            </div> <!-- row 2.4.4 for hackathon mode & deadline info end -->
-
-          </div><!-- column for text info related to hackathon end -->
-
-        </div><!-- row 2.4 end -->
-
-      </div><!-- down right col-md-6 for layout of hachathon info box started -->
+      <!-- column for explore more hackathon started -->
+      <div class="col-md-3 white-text-info-box hide-md">
+        <a href="exhibition.php"><span class="explore-more">Explore More Exhibitions ></span></a>
+      </div><!-- column for explore more hackathon end -->
 
     </div> <!-- row 2 end -->
 

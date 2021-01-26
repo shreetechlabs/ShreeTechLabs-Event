@@ -45,6 +45,9 @@
             <option value="0" selected>N/A</option>
             <option value="1">Featured</option>
         </select><br><br><br>
+        <!-- Input Tag For Event Link -->
+         <label for="eventLink">Event Link: </label>
+        <input type="text" name="eventLink" id="eventLink" placeholder="Enter Link"><br><br><br>
         <!-- Input Tag For Organisation Logo -->
         <label for="eventLogo">Event Logo: </label>
         <input type="file" name="eventLogo" id="eventLogo"><br><br><br>

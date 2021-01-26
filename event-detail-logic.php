@@ -11,6 +11,7 @@ $eventPrize=mysqli_real_escape_string($con,$_POST['eventPrize']);
 $eventFee=mysqli_real_escape_string($con,$_POST['eventFee']);
 $eventMode=mysqli_real_escape_string($con,$_POST['eventMode']);
 $eventDeadline=mysqli_real_escape_string($con,$_POST['eventDeadline']);
+$eventLink=mysqli_real_escape_string($con,$_POST['eventLink']);
 $eventPriority=mysqli_real_escape_string($con,$_POST['eventPriority']);
 $file_name=$_FILES["eventLogo"]["name"];
 $temp_name=$_FILES["eventLogo"]["tmp_name"];
@@ -24,7 +25,7 @@ move_uploaded_file($temp_name,$folder);
 $logoPath=$folder;
 
 // Insert Query Variable
-$eventDetailquery="INSERT INTO event.$whichTable (title, eventTagline, prize, fee, mode, deadline, flag, logoPath) VALUES ('$eventTitle','$eventTagline','$eventPrize','$eventFee','$eventMode','$eventDeadline','$eventPriority','$logoPath')";
+$eventDetailquery="INSERT INTO event.$whichTable (title, eventTagline, prize, fee, mode, deadline, eventLink, flag, logoPath) VALUES ('$eventTitle','$eventTagline','$eventPrize','$eventFee','$eventMode','$eventDeadline','$eventLink','$eventPriority','$logoPath')";
 
 // Insert Query Execution
 $queryProceed=mysqli_query($con,$eventDetailquery)
